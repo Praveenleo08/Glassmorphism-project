@@ -1,0 +1,97 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ibaco - Login</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body
+    class="font-sans text-gray-800 overflow-hidden min-h-screen w-full flex items-center justify-center bg-cover bg-center relative"
+    style="background-image: url('assets/Glassmorphism images Source/bg.png'); background-color: #e699bc;">
+
+    <!-- Abstract blobs for depth -->
+    <div
+        class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float">
+    </div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float"
+        style="animation-delay: 2s;"></div>
+
+    <div
+        class="glass w-[900px] min-h-[580px] rounded-[3rem] p-16 relative flex gap-10 items-center animate-fade-in-left">
+
+        <!-- Left Form Section -->
+        <div class="w-[45%] flex flex-col z-10">
+            <h1 class="text-5xl font-black mb-3 tracking-tight text-[#333]">Let's get started!</h1>
+            <p class="text-gray-600 mb-8 font-medium">
+                Don't have an account? <a href="signup.html" class="text-[#880E4F] font-bold hover:underline">Create
+                    now</a>
+            </p>
+
+            <form class="flex flex-col gap-5">
+                <div class="flex flex-col gap-2">
+                    <label class="text-gray-700 text-sm font-bold pl-2">E-mail</label>
+                    <input type="email"
+                        class="w-full h-12 rounded-xl bg-white/40 border border-white/50 px-5 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#880E4F]/30 focus:bg-white/60 transition-all font-medium shadow-inner"
+                        placeholder="name@example.com" />
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <label class="text-gray-700 text-sm font-bold pl-2">Password</label>
+                    <input type="password"
+                        class="w-full h-12 rounded-xl bg-white/40 border border-white/50 px-5 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#880E4F]/30 focus:bg-white/60 transition-all font-medium shadow-inner"
+                        placeholder="••••••••" />
+                </div>
+
+                <div class="flex items-center gap-3 mt-2 pl-1">
+                    <input type="checkbox" id="terms" class="accent-[#880E4F] w-5 h-5 cursor-pointer">
+                    <label for="terms" class="text-sm text-gray-600 cursor-pointer select-none font-medium">
+                        I accept <a href="#" class="text-[#880E4F] font-bold hover:underline">Terms and Conditions</a>
+                    </label>
+                </div>
+
+                <button type="button"
+                    class="w-full sm:w-[200px] h-12 mt-6 bg-[#333] hover:bg-black text-white rounded-full font-bold tracking-wide transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 text-lg cursor-pointer">
+                    Log in
+                </button>
+            </form>
+
+            <div class="flex gap-6 mt-10 ml-2">
+                <button
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-md hover:scale-110 transition-transform cursor-pointer">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-6 h-6">
+                </button>
+                <button
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-md hover:scale-110 transition-transform text-[#1877F2] cursor-pointer">
+                    <i class="fa-brands fa-facebook-f text-xl"></i>
+                </button>
+                <button
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-md hover:scale-110 transition-transform text-black cursor-pointer">
+                    <i class="fa-brands fa-x-twitter text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Logo Section -->
+        <div class="w-[55%] flex flex-col items-center justify-center z-10 relative">
+            <!-- Decorative circle behind logo -->
+            <div class="absolute w-[300px] h-[300px] bg-white/20 rounded-full blur-2xl"></div>
+            <img src="assets/logo.png" alt="ibaco"
+                class="w-[400px] object-contain drop-shadow-2xl relative z-10 hover:scale-105 transition-transform duration-500" />
+        </div>
+    </div>
+</body>
+
+</html>
