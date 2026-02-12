@@ -13,6 +13,9 @@ import ScrollToTop from './ScrollToTop';
 
 import CelebrationCakes from './CelebrationCakes';
 import ProductDetails from './ProductDetails';
+import CoolingSips from './CoolingSips'; // Import
+import SignatureCone from './SignatureCone'; // Import
+import SignatureBars from './SignatureBars'; // Import
 import Cart from './Cart';
 
 function App() {
@@ -27,6 +30,9 @@ function App() {
           <Route path="/our-story" element={<OurStory />} />
           <Route path="/products" element={<ProductsHome />} />
           <Route path="/ice-cream-items" element={<OurProducts />} />
+          <Route path="/cooling-sips" element={<CoolingSips />} />
+          <Route path="/signature-cone" element={<SignatureCone />} />
+          <Route path="/signature-bars" element={<SignatureBars />} />
           <Route path="/celebration-cakes" element={<CelebrationCakes />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />

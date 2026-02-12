@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaInstagram } from 'react-icons/fa';
 import logo from './assets/logo.png';
-import Footer from './Footer';
 
 // Assets
 import productsBg from './assets/Products home page/products page bg.png';
@@ -13,6 +12,7 @@ import img3 from './assets/Products home page/3.png'; // Celebration Cakes (Assu
 import img4 from './assets/Products home page/4.png'; // Cooling Sips
 import img5 from './assets/Products home page/5.png'; // Ice Cream Delight
 import img6 from './assets/Products home page/6.png'; // Unused/Extra
+import signatureBarsImg from './assets/signature-bars.png'; // Added new image
 
 const ProductsHome = () => {
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ const ProductsHome = () => {
     const categoriesTop = [
         {
             id: 1,
-            title: "Ice Cream Delights",
+            title: "Ice Creams",
             image: img5,
             link: '/ice-cream-items',
             btnText: "VIEW FLAVORS",
@@ -34,7 +34,7 @@ const ProductsHome = () => {
         },
         {
             id: 2,
-            title: "Celebration Cakes",
+            title: "Ice Cream Cakes",
             image: img4, // Swapped from img3
             link: '/celebration-cakes',
             btnText: "SELECT YOUR CAKES",
@@ -45,7 +45,7 @@ const ProductsHome = () => {
             id: 3,
             title: "Cooling Sips",
             image: img3, // Swapped from img4
-            link: '#',
+            link: '/cooling-sips',
             btnText: "EXPLORE SHAKES",
             delay: "300ms",
             style: ""
@@ -55,17 +55,17 @@ const ProductsHome = () => {
     const categoriesBottom = [
         {
             id: 4,
-            title: "Crunchy Comfort",
+            title: "Signature Cone",
             image: img1,
-            link: '#',
+            link: '/signature-cone',
             btnText: "BUILD YOUR CONES",
             delay: "400ms"
         },
         {
             id: 5,
-            title: "Frozen Refreshment",
-            image: img2,
-            link: '#',
+            title: "Signature Bars",
+            image: signatureBarsImg,
+            link: '/signature-bars',
             btnText: "BLENDED JOY",
             delay: "500ms"
         }
@@ -221,6 +221,7 @@ const ProductsHome = () => {
                                 <div key={cat.id} className="flex flex-col items-center group relative z-10" style={{ animationDelay: cat.delay }}>
                                     {/* Card */}
                                     <div
+                                        onClick={() => navigate(cat.link)}
                                         className="relative w-full aspect-[4/3.5] bg-gradient-to-b from-white/40 to-white/10 backdrop-blur-xl rounded-[3rem] border border-white/60 shadow-[0_10px_30px_rgba(139,83,72,0.1)] transition-all duration-500 group-hover:bg-white/60 group-hover:scale-[1.03] group-hover:shadow-[0_20px_50px_rgba(139,83,72,0.2)] cursor-pointer overflow-visible flex flex-col items-center justify-end pb-8"
                                     >
                                         <div className="absolute -top-12 w-full h-[85%] flex items-center justify-center p-4">
@@ -236,6 +237,7 @@ const ProductsHome = () => {
                                         </div>
                                     </div>
                                     <button
+                                        onClick={() => navigate(cat.link)}
                                         className="-mt-5 z-20 bg-gradient-to-r from-[#bcaa99] to-[#a1887f] text-white font-bold text-xs md:text-sm px-10 py-2.5 rounded-full shadow-lg hover:shadow-xl hover:from-[#a1887f] hover:to-[#8d6e63] transition-all transform hover:-translate-y-1 uppercase tracking-widest border border-white/20"
                                     >
                                         {cat.btnText}
@@ -249,7 +251,44 @@ const ProductsHome = () => {
 
             </div>
 
-            <Footer />
+            {/* Footer - Moved Outside Container for Full Width */}
+            <footer className="bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-xl py-8 mt-12 border-t border-white/60 shadow-lg relative z-10 w-full">
+                <div className="w-full max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center text-sm gap-4">
+
+                    {/* Brand / Copyright */}
+                    <div className="flex flex-col gap-1">
+                        <span className="text-red-800 font-bold text-lg tracking-wider">ibaco</span>
+                        <p className="text-gray-600">© 2024 Hatsun Agro Product Ltd.</p>
+                        <p className="text-gray-500 text-xs text-justify max-w-xs">NO COMPROMISE. NATURALLY. CREATIVE AND REAL.</p>
+                    </div>
+
+                    {/* Links Column 1 */}
+                    <div className="flex flex-col gap-2">
+                        <h3 className="text-gray-800 font-semibold mb-1">Explore</h3>
+                        <Link to="/our-story"><p className="hover:text-[#922B21] cursor-pointer text-[#922B21] font-bold">Our Story</p></Link>
+                        <p className="hover:text-[#922B21] cursor-pointer">Our Products</p>
+                        <Link to="/store-locator"><p className="hover:text-[#922B21] cursor-pointer">Store Locator</p></Link>
+                    </div>
+
+                    {/* Links Column 2 */}
+                    <div className="flex flex-col gap-2">
+                        <h3 className="text-gray-800 font-semibold mb-1">Support</h3>
+                        <p className="hover:text-[#922B21] cursor-pointer">Order Online</p>
+                        <Link to="/contact-us"><p className="hover:text-[#922B21] cursor-pointer">Contact Us</p></Link>
+                        <p className="hover:text-[#922B21] cursor-pointer">Nutritional Info</p>
+                    </div>
+
+                    {/* Socials */}
+                    <div className="flex flex-col gap-2">
+                        <h3 className="text-gray-800 font-semibold mb-1">Follow Us</h3>
+                        <div className="flex gap-3">
+                            <span className="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-red-500 hover:bg-red-50 cursor-pointer shadow-sm text-xs"><FaInstagram /></span>
+                            <span className="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-blue-600 hover:bg-blue-50 cursor-pointer shadow-sm text-xs">f</span>
+                            <span className="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-pink-600 hover:bg-pink-50 cursor-pointer shadow-sm text-xs">In</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
 
             <style>
                 {`
