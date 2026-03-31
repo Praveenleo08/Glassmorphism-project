@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story - Ibaco</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                    },
+                    colors: {
+                        primary: '#922B21',
+                        secondary: '#D81B60',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen w-full relative font-sans overflow-x-hidden text-[#5D4037] bg-pink-50">
+
+    <!-- Background -->
+    <div class="fixed inset-0 z-0">
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-purple-200/40 via-pink-100/40 to-blue-100/40 mix-blend-overlay">
+        </div>
+    </div>
+
+    <!-- Floating Blobs -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div
+            class="absolute top-10 left-10 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-blob">
+        </div>
+        <div
+            class="absolute bottom-10 right-10 w-96 h-96 bg-pink-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-yellow-200 rounded-full mix-blend-multiply filter blur-[120px] opacity-30 animate-blob animation-delay-4000">
+        </div>
+    </div>
+
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 container mx-auto px-4 pb-20 pt-44 flex flex-col items-center">
+
+        <!-- Header Card -->
+        <div
+            class="reveal w-full max-w-5xl bg-gradient-to-br from-white/60 to-white/20 backdrop-blur-2xl border border-white/60 rounded-[50px] p-12 md:p-20 text-center shadow-[0_20px_50px_rgba(31,38,135,0.15)] mb-20 relative overflow-hidden group">
+            <div
+                class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-[#922B21] to-transparent opacity-50">
+            </div>
+            <div
+                class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+            </div>
+
+            <h1 class="font-cursive text-6xl md:text-8xl mb-8 text-[#922B21] drop-shadow-sm animate-float">A Fresh Scoop
+                Begins</h1>
+            <p class="text-xl md:text-2xl leading-relaxed text-gray-800 max-w-3xl mx-auto font-medium tracking-wide">
+                <span class="font-bold text-[#D32F2F] text-3xl">Ibaco</span> was launched with a vision to redefine the
+                ice cream experience by offering freshly scooped,
+                customizable ice creams made with premium ingredients.
+            </p>
+        </div>
+
+        <!-- New Section: Our Philosophy -->
+        <div class="w-full max-w-6xl mb-32">
+            <div class="reveal delay-100">
+                <h2
+                    class="text-4xl font-black uppercase tracking-widest text-[#880E4F] text-center mb-16 drop-shadow-sm">
+                    What Drives Us</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Quality -->
+                <div
+                    class="reveal delay-200 bg-white/30 backdrop-blur-xl border border-white/50 rounded-[40px] p-10 text-center hover:bg-white/40 transition-all duration-300 hover:-translate-y-2 shadow-lg group">
+                    <div
+                        class="w-20 h-20 bg-white/70 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-[#E91E63] text-4xl group-hover:scale-110 transition-transform">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#922B21] mb-4">Premium Quality</h3>
+                    <p class="text-gray-800 font-medium">We source only the finest ingredients from around the world to
+                        ensure every scoop is pure perfection.</p>
+                </div>
+
+                <!-- Innovation -->
+                <div
+                    class="reveal delay-300 bg-white/30 backdrop-blur-xl border border-white/50 rounded-[40px] p-10 text-center hover:bg-white/40 transition-all duration-300 hover:-translate-y-2 shadow-lg group">
+                    <div
+                        class="w-20 h-20 bg-white/70 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-[#FBC02D] text-4xl group-hover:scale-110 transition-transform">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#922B21] mb-4">Endless Innovation</h3>
+                    <p class="text-gray-800 font-medium">Constantly experimenting with new flavors and textures to bring
+                        you the most exciting deserts.</p>
+                </div>
+
+                <!-- Passion -->
+                <div
+                    class="reveal delay-400 bg-white/30 backdrop-blur-xl border border-white/50 rounded-[40px] p-10 text-center hover:bg-white/40 transition-all duration-300 hover:-translate-y-2 shadow-lg group">
+                    <div
+                        class="w-20 h-20 bg-white/70 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-[#D81B60] text-4xl group-hover:scale-110 transition-transform">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#922B21] mb-4">Made with Love</h3>
+                    <p class="text-gray-800 font-medium">Everything we create is crafted with passion and care, designed
+                        to create unforgettable moments.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Title -->
+        <div class="reveal delay-200">
+            <h2
+                class="text-4xl md:text-5xl font-black uppercase tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-[#E91E63] to-[#9C27B0] text-center mb-28 select-none relative drop-shadow-sm">
+                Our Journey Over The Years
+                <span
+                    class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-gradient-to-r from-[#E91E63] to-[#9C27B0] rounded-full"></span>
+            </h2>
+        </div>
+
+        <!-- Vertical Timeline -->
+        <div class="w-full max-w-6xl relative" id="timeline-container">
+            <div class="flex flex-col gap-32 relative">
+                <!-- Central Dashed Line -->
+                <div
+                    class="absolute left-1/2 top-0 bottom-0 w-1 border-l-4 border-dotted border-[#922B21]/30 -translate-x-1/2 hidden md:block">
+                </div>
+
+                <!-- Timeline Items injected via JS -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer
+        class="bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-xl py-8 mt-12 border-t border-white/60 shadow-lg relative z-10 w-full">
+        <div class="w-full max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center text-sm gap-4">
+
+            <!-- Brand / Copyright -->
+            <div class="flex flex-col gap-1">
+                <span class="text-red-800 font-bold text-lg tracking-wider">ibaco</span>
+                <p class="text-gray-600">© 2024 Hatsun Agro Product Ltd.</p>
+                <p class="text-gray-500 text-xs text-justify max-w-xs">NO COMPROMISE. NATURALLY. CREATIVE AND REAL.</p>
+            </div>
+
+            <!-- Links Column 1 -->
+            <div class="flex flex-col gap-2">
+                <h3 class="text-gray-800 font-semibold mb-1">Explore</h3>
+                <a href="story.html">
+                    <p class="hover:text-[#922B21] cursor-pointer text-[#922B21] font-bold">Our Story</p>
+                </a>
+                <a href="products.html">
+                    <p class="hover:text-[#922B21] cursor-pointer">Our Products</p>
+                </a>
+                <a href="store-locator.html">
+                    <p class="hover:text-[#922B21] cursor-pointer">Store Locator</p>
+                </a>
+            </div>
+
+            <!-- Links Column 2 -->
+            <div class="flex flex-col gap-2">
+                <h3 class="text-gray-800 font-semibold mb-1">Support</h3>
+                <p class="hover:text-[#922B21] cursor-pointer">Order Online</p>
+                <a href="contact.html">
+                    <p class="hover:text-[#922B21] cursor-pointer">Contact Us</p>
+                </a>
+                <p class="hover:text-[#922B21] cursor-pointer">Nutritional Info</p>
+            </div>
+
+            <!-- Socials -->
+            <div class="flex flex-col gap-2">
+                <h3 class="text-gray-800 font-semibold mb-1">Follow Us</h3>
+                <div class="flex gap-3">
+                    <span
+                        class="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-red-500 hover:bg-red-50 cursor-pointer shadow-sm text-xs"><i
+                            class="fab fa-instagram"></i></span>
+                    <span
+                        class="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-blue-600 hover:bg-blue-50 cursor-pointer shadow-sm text-xs"><i
+                            class="fab fa-facebook-f"></i></span>
+                    <span
+                        class="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-pink-600 hover:bg-pink-50 cursor-pointer shadow-sm text-xs"><i
+                            class="fab fa-linkedin-in"></i></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script>
+        // Timeline Data
+        const timelineData = [
+            { year: '2012', title: 'A Fresh Beginning', desc: 'Ibaco was launched with a vision to redefine the ice cream experience by offering freshly scooped, customizable ice creams.', img: 'assets/Our story images/1.png' },
+            { year: '2013', title: 'Flavor Innovation', desc: 'We introduced new exotic flavors derived from premiums ingredients sourced globally, setting a new standard.', img: 'assets/Our story images/2.png' },
+            { year: '2015', title: 'Growing Together', desc: 'Expanding our footprint to over 50 stores, bringing the joy of ice cream to more neighborhoods.', img: 'assets/Our story images/3.png' },
+            { year: '2017', title: 'Signature Cakes', desc: 'Launched our exclusive range of ice cream cakes, perfect for celebrating life’s special moments.', img: 'assets/Our story images/4.png' },
+            { year: '2019', title: 'New Aesthetics', desc: 'Revamped our store interiors to provide a more immersive and premium dessert experience.', img: 'assets/Our story images/5.png' },
+            { year: '2021', title: 'Digital Reach', desc: 'Started home delivery and online ordering to serve our customers from the comfort of their homes.', img: 'assets/Our story images/6.png' },
+            { year: '2023', title: 'Limitless Toppings', desc: 'Expanded our toppings bar to include over 30 varieties, allowing for infinite customization.', img: 'assets/Our story images/7.png' },
+            { year: '2025', title: 'Future Ready', desc: 'Continuing the legacy of quality and taste with sustainable practices and new culinary adventures.', img: 'assets/Our story images/8.png' },
+        ];
+
+        const container = document.querySelector('.flex.flex-col.gap-32');
+
+        timelineData.forEach((item, index) => {
+            const isEven = index % 2 === 0;
+            const directionClass = isEven ? 'flex-row' : 'flex-row-reverse';
+
+            // Note: Since we might not have all exact images in 'assets/Our story images/', we might see 404s depending on what assets were copied. 
+            // In a real scenario, we would ensure these assets exist.
+
+            const html = `
+                <div class="flex items-center justify-between w-full relative ${directionClass}">
+                    <!-- Timeline Content Card -->
+                    <div class="w-full md:w-[45%] relative group perspective-1000 reveal">
+                        <div class="bg-gradient-to-br from-white/70 via-white/40 to-pink-50/20 backdrop-blur-xl border border-white/60 rounded-[40px] p-8 md:p-10 shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_25px_50px_rgba(233,30,99,0.2)] transition-all duration-500 hover:-translate-y-2 relative overflow-hidden flex flex-col justify-center min-h-[250px]">
+                            
+                            <!-- Hover Gradient -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-pink-200/20 to-purple-200/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                            <!-- Year Badge -->
+                            <div class="absolute top-0 right-0 p-6 opacity-10 font-black text-8xl text-[#922B21] select-none z-0">
+                                ${item.year}
+                            </div>
+                            <div class="w-max bg-white/60 backdrop-blur-md px-6 py-2 rounded-full font-black text-[#D81B60] text-xl shadow-sm mb-6 z-10 border border-white/50">
+                                ${item.year}
+                            </div>
+
+                            <div class="flex items-center gap-6 relative z-10">
+                                <div class="flex-1">
+                                    <h3 class="text-3xl font-bold text-[#880E4F] mb-4 group-hover:text-[#D81B60] transition-colors">${item.title}</h3>
+                                    <p class="text-lg text-gray-800 leading-relaxed font-medium">${item.desc}</p>
+                                </div>
+                                <div class="w-32 h-32 shrink-0 bg-white/60 rounded-full flex items-center justify-center p-4 shadow-inner group-hover:rotate-12 transition-transform duration-500 border border-white">
+                                    <img src="${item.img}" alt="${item.year}" class="w-full h-full object-contain filter drop-shadow-md" onerror="this.src='https://via.placeholder.com/150?text=${item.year}'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder for opposite side spacing on desktop -->
+                    <div class="hidden md:block w-[45%]"></div>
+
+                    <!-- Center Dot with Pulse -->
+                    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden md:flex items-center justify-center reveal">
+                        <div class="w-8 h-8 bg-[#E91E63] rounded-full border-4 border-white shadow-lg relative group-hover:scale-125 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-[#E91E63] rounded-full animate-ping opacity-75"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += html;
+        });
+
+        // Scroll Reveal Script
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
+</body>
+
+</html>

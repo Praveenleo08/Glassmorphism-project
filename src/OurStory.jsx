@@ -86,34 +86,34 @@ const OurStory = () => {
             </div>
 
             {/* Navbar */}
-            <nav className="flex items-center justify-between px-10 py-6 absolute top-0 w-full z-50">
+            <nav className="flex items-center justify-between px-4 md:px-10 py-4 md:py-6 absolute top-0 w-full z-50">
                 <Link to="/">
-                    <img src={logo} alt="ibaco" className="h-40 object-contain hover:scale-110 transition-transform duration-300 drop-shadow-md" />
+                    <img src={logo} alt="ibaco" className="h-16 md:h-24 object-contain hover:scale-110 transition-transform duration-300 drop-shadow-md" />
                 </Link>
 
-                <div className="flex items-center gap-4 relative">
+                <div className="flex items-center gap-2 md:gap-4 relative">
                     <Link to="/login">
-                        <button className="px-8 py-1.5 rounded-lg border border-black/20 bg-transparent text-sm font-bold text-black/80 hover:bg-white/20 transition-all uppercase shadow-sm">
+                        <button className="hidden sm:block px-4 md:px-8 py-1 md:py-1.5 rounded-lg border border-black/20 bg-transparent text-xs md:text-sm font-bold text-black/80 hover:bg-white/20 transition-all uppercase shadow-sm">
                             login
                         </button>
                     </Link>
-                    <button className="px-6 py-1.5 rounded-lg border border-black/20 bg-transparent text-sm font-bold text-black/80 hover:bg-white/20 transition-all uppercase shadow-sm">
+                    <button className="hidden sm:block px-4 md:px-6 py-1 md:py-1.5 rounded-lg border border-black/20 bg-transparent text-xs md:text-sm font-bold text-black/80 hover:bg-white/20 transition-all uppercase shadow-sm">
                         Our Products
                     </button>
                     <Link to="/">
-                        <button className="w-10 h-10 flex items-center justify-center rounded-lg border border-black/20 bg-transparent hover:bg-white/20 transition-all text-black/80 text-xl shadow-sm">
+                        <button className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-lg border border-black/20 bg-transparent hover:bg-white/20 transition-all text-black/80 text-lg md:text-xl shadow-sm">
                             <FaHome />
                         </button>
                     </Link>
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="w-10 h-10 flex items-center justify-center rounded-lg border border-black/20 bg-transparent hover:bg-white/20 transition-all text-black/80 text-xl z-50 relative"
+                        className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-lg border border-black/20 bg-transparent hover:bg-white/20 transition-all text-black/80 text-lg md:text-xl z-50 relative"
                     >
                         <FaBars />
                     </button>
 
                     {/* Mobile Menu Dropdown with Smooth Animation */}
-                    <div className={`absolute top-16 right-0 w-72 bg-white/80 backdrop-blur-3xl border border-white/60 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-6 flex flex-col gap-4 transition-all duration-300 origin-top-right transform ${isMenuOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 -translate-y-4 pointer-events-none'} z-40`}>
+                    <div className={`absolute top-14 md:top-16 right-0 w-64 md:w-72 bg-white/90 backdrop-blur-3xl border border-white/60 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-4 md:p-6 flex flex-col gap-3 md:gap-4 transition-all duration-300 origin-top-right transform ${isMenuOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 -translate-y-4 pointer-events-none'} z-40`}>
                         <div className="flex flex-col gap-2">
                             <h3 className="text-[#922B21] font-bold text-sm uppercase tracking-wider border-b border-gray-200/50 pb-2 mb-1">Explore</h3>
                             <Link to="/our-story" className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg">Our Story</Link>
@@ -123,9 +123,8 @@ const OurStory = () => {
 
                         <div className="flex flex-col gap-2 mt-2">
                             <h3 className="text-[#922B21] font-bold text-sm uppercase tracking-wider border-b border-gray-200/50 pb-2 mb-1">Support</h3>
-                            <span className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg cursor-pointer">Order Online</span>
+
                             <Link to="/contact-us" className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg">Contact Us</Link>
-                            <span className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg cursor-pointer">Nutritional Info</span>
                         </div>
                     </div>
                 </div>
@@ -136,13 +135,13 @@ const OurStory = () => {
 
                 {/* Header Card */}
                 <RevealOnScroll direction="up">
-                    <div className="w-full max-w-5xl bg-gradient-to-br from-white/60 to-white/20 backdrop-blur-2xl border border-white/60 rounded-[50px] p-12 md:p-20 text-center shadow-[0_20px_50px_rgba(31,38,135,0.15)] mb-20 relative overflow-hidden group">
+                    <div className="w-full max-w-5xl bg-gradient-to-br from-white/60 to-white/20 backdrop-blur-2xl border border-white/60 rounded-3xl md:rounded-[50px] p-6 md:p-20 text-center shadow-[0_20px_50px_rgba(31,38,135,0.15)] mb-12 md:mb-20 relative overflow-hidden group">
                         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-[#922B21] to-transparent opacity-50"></div>
                         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
-                        <h1 className="font-cursive text-6xl md:text-8xl mb-8 text-[#922B21] drop-shadow-sm animate-float">A Fresh Scoop Begins</h1>
-                        <p className="text-xl md:text-2xl leading-relaxed text-gray-800 max-w-3xl mx-auto font-medium tracking-wide">
-                            <span className="font-bold text-[#D32F2F] text-3xl">Ibaco</span> was launched with a vision to redefine the
+                        <h1 className="font-cursive text-5xl md:text-8xl mb-6 md:mb-8 text-[#922B21] drop-shadow-sm animate-float">A Fresh Scoop Begins</h1>
+                        <p className="text-base md:text-2xl leading-relaxed text-gray-800 max-w-3xl mx-auto font-medium tracking-wide">
+                            <span className="font-bold text-[#D32F2F] text-xl md:text-3xl">Ibaco</span> was launched with a vision to redefine the
                             ice cream experience by offering freshly scooped,
                             customizable ice creams made with premium ingredients.
                         </p>
@@ -206,30 +205,30 @@ const OurStory = () => {
                         <div className="absolute left-1/2 top-0 bottom-0 w-1 border-l-4 border-dotted border-[#922B21]/30 -translate-x-1/2 hidden md:block"></div>
 
                         {timelineData.map((item, index) => (
-                            <div key={index} className={`flex items-center justify-between w-full relative ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                            <div key={index} className={`flex flex-col md:flex-row items-center justify-between w-full relative ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
 
                                 {/* Timeline Content Card */}
                                 <div className={`w-full md:w-[45%] relative group perspective-1000`}>
                                     <RevealOnScroll direction={index % 2 === 0 ? 'left' : 'right'}>
-                                        <div className="bg-gradient-to-br from-white/70 via-white/40 to-pink-50/20 backdrop-blur-xl border border-white/60 rounded-[40px] p-8 md:p-10 shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_25px_50px_rgba(233,30,99,0.2)] transition-all duration-500 hover:-translate-y-2 relative overflow-hidden flex flex-col justify-center min-h-[250px]">
+                                        <div className="bg-gradient-to-br from-white/70 via-white/40 to-pink-50/20 backdrop-blur-xl border border-white/60 rounded-3xl md:rounded-[40px] p-6 md:p-10 shadow-[0_15px_35px_rgba(0,0,0,0.1)] hover:shadow-[0_25px_50px_rgba(233,30,99,0.2)] transition-all duration-500 md:hover:-translate-y-2 relative overflow-hidden flex flex-col justify-center min-h-[auto] md:min-h-[250px] mt-6 md:mt-0">
 
                                             {/* Hover Gradient Overlay */}
                                             <div className="absolute inset-0 bg-gradient-to-r from-pink-200/20 to-purple-200/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                                             {/* Year Badge - Integrated into card layout for better alignment */}
-                                            <div className="absolute top-0 right-0 p-6 opacity-10 font-black text-8xl text-[#922B21] select-none z-0">
+                                            <div className="absolute top-0 right-0 p-4 md:p-6 opacity-10 font-black text-6xl md:text-8xl text-[#922B21] select-none z-0">
                                                 {item.year}
                                             </div>
-                                            <div className="w-max bg-white/60 backdrop-blur-md px-6 py-2 rounded-full font-black text-[#D81B60] text-xl shadow-sm mb-6 z-10 border border-white/50">
+                                            <div className="w-max bg-white/60 backdrop-blur-md px-4 md:px-6 py-1.5 md:py-2 rounded-full font-black text-[#D81B60] text-lg md:text-xl shadow-sm mb-4 md:mb-6 z-10 border border-white/50 relative">
                                                 {item.year}
                                             </div>
 
-                                            <div className="flex items-center gap-6 relative z-10">
-                                                <div className="flex-1">
-                                                    <h3 className="text-3xl font-bold text-[#880E4F] mb-4 group-hover:text-[#D81B60] transition-colors">{item.title}</h3>
-                                                    <p className="text-lg text-gray-800 leading-relaxed font-medium">{item.desc}</p>
+                                            <div className="flex flex-col md:flex-row items-center gap-6 relative z-10 text-center md:text-left">
+                                                <div className="order-2 md:order-1 flex-1">
+                                                    <h3 className="text-2xl md:text-3xl font-bold text-[#880E4F] mb-2 md:mb-4 group-hover:text-[#D81B60] transition-colors">{item.title}</h3>
+                                                    <p className="text-base md:text-lg text-gray-800 leading-relaxed font-medium">{item.desc}</p>
                                                 </div>
-                                                <div className="w-32 h-32 shrink-0 bg-white/60 rounded-full flex items-center justify-center p-4 shadow-inner group-hover:rotate-12 transition-transform duration-500 border border-white">
+                                                <div className="order-1 md:order-2 w-24 h-24 md:w-32 md:h-32 shrink-0 bg-white/60 rounded-full flex items-center justify-center p-3 md:p-4 shadow-inner group-hover:rotate-12 transition-transform duration-500 border border-white">
                                                     <img src={item.img} alt={item.year} className="w-full h-full object-contain filter drop-shadow-md" />
                                                 </div>
                                             </div>
@@ -257,17 +256,17 @@ const OurStory = () => {
 
             {/* Footer - Moved Outside Container for Full Width */}
             <footer className="bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-xl py-8 mt-12 border-t border-white/60 shadow-lg relative z-10 w-full">
-                <div className="w-full max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center text-sm gap-4">
+                <div className="w-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center text-sm gap-8 md:gap-4">
 
                     {/* Brand / Copyright */}
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-1 w-full md:w-1/4">
                         <span className="text-red-800 font-bold text-lg tracking-wider">ibaco</span>
                         <p className="text-gray-600">© 2024 Hatsun Agro Product Ltd.</p>
-                        <p className="text-gray-500 text-xs text-justify max-w-xs">NO COMPROMISE. NATURALLY. CREATIVE AND REAL.</p>
+                        <p className="text-gray-500 text-xs text-justify md:max-w-xs">NO COMPROMISE. NATURALLY. CREATIVE AND REAL.</p>
                     </div>
 
                     {/* Links Column 1 */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 w-full md:w-auto">
                         <h3 className="text-gray-800 font-semibold mb-1">Explore</h3>
                         <Link to="/our-story"><p className="hover:text-[#922B21] cursor-pointer text-[#922B21] font-bold">Our Story</p></Link>
                         <p className="hover:text-[#922B21] cursor-pointer">Our Products</p>
@@ -277,9 +276,8 @@ const OurStory = () => {
                     {/* Links Column 2 */}
                     <div className="flex flex-col gap-2">
                         <h3 className="text-gray-800 font-semibold mb-1">Support</h3>
-                        <p className="hover:text-[#922B21] cursor-pointer">Order Online</p>
+
                         <Link to="/contact-us"><p className="hover:text-[#922B21] cursor-pointer">Contact Us</p></Link>
-                        <p className="hover:text-[#922B21] cursor-pointer">Nutritional Info</p>
                     </div>
 
                     {/* Socials */}

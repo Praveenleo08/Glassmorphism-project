@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { FaBars, FaStar, FaHeart, FaLeaf, FaMedal, FaInstagram, FaHome } from 'react-icons/fa'; // Using fa icons as placeholders for the quality icons
+import { Link, useNavigate } from 'react-router-dom';
+import { FaBars, FaStar, FaHeart, FaLeaf, FaMedal, FaInstagram, FaHome, FaUserCircle } from 'react-icons/fa'; // Using fa icons as placeholders
+import { auth } from './firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import Navbar from './Navbar'; // Import Navbar
 import logo from './assets/logo.png';
 import mainBg from './assets/Glassmorphism images Source/bg.png';
 
@@ -71,6 +74,15 @@ const slides = [
 function Home() {
     const [current, setCurrent] = useState(0); // Start with Cotton Candy (index 0)
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+        return () => unsubscribe();
+    }, []);
 
     const slide = slides[current];
 
@@ -79,83 +91,39 @@ function Home() {
             className="min-h-screen w-full relative font-sans overflow-x-hidden transition-colors duration-1000 ease-in-out"
             style={{ backgroundColor: slide.bg }}
         >
-            {/* Navbar */}
-            <nav className="flex items-center justify-between px-10 py-6 absolute top-0 w-full z-50">
-                <img src={logo} alt="ibaco" className="h-40 object-contain" />
-
-                <div className="flex items-center gap-4 relative">
-                    <Link to="/login">
-                        <button className="px-8 py-1.5 rounded-lg border border-black/20 bg-transparent text-sm font-bold text-black/80 hover:bg-white/20 transition-all uppercase shadow-sm">
-                            login
-                        </button>
-                    </Link>
-                    <Link to="/products">
-                        <button className="px-6 py-1.5 rounded-lg border border-black/20 bg-transparent text-sm font-bold text-black/80 hover:bg-white/20 transition-all uppercase shadow-sm">
-                            Our Products
-                        </button>
-                    </Link>
-                    <Link to="/">
-                        <button className="w-10 h-10 flex items-center justify-center rounded-lg border border-black/20 bg-transparent hover:bg-white/20 transition-all text-black/80 text-xl shadow-sm">
-                            <FaHome />
-                        </button>
-                    </Link>
-                    <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="w-10 h-10 flex items-center justify-center rounded-lg border border-black/20 bg-transparent hover:bg-white/20 transition-all text-black/80 text-xl z-50 relative"
-                    >
-                        <FaBars />
-                    </button>
-
-                    {/* Mobile Menu Dropdown with Smooth Animation */}
-                    <div className={`absolute top-16 right-0 w-72 bg-white/80 backdrop-blur-3xl border border-white/60 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-6 flex flex-col gap-4 transition-all duration-300 origin-top-right transform ${isMenuOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 -translate-y-4 pointer-events-none'} z-40`}>
-                        <div className="flex flex-col gap-2">
-                            <h3 className="text-[#922B21] font-bold text-sm uppercase tracking-wider border-b border-gray-200/50 pb-2 mb-1">Explore</h3>
-                            <Link to="/our-story" className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg">Our Story</Link>
-                            <Link to="/products" className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg">Our Products</Link>
-                            <Link to="/store-locator" className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg">Store Locator</Link>
-                        </div>
-
-                        <div className="flex flex-col gap-2 mt-2">
-                            <h3 className="text-[#922B21] font-bold text-sm uppercase tracking-wider border-b border-gray-200/50 pb-2 mb-1">Support</h3>
-                            <span className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg cursor-pointer">Order Online</span>
-                            <Link to="/contact-us" className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg">Contact Us</Link>
-                            <span className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg cursor-pointer">Nutritional Info</span>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            <Navbar /> {/* Use Navbar component */}
 
             {/* Hero Section */}
-            <div className="relative w-full min-h-screen flex items-center pt-24 px-16 overflow-hidden">
+            <div className="relative w-full min-h-[90vh] flex flex-col md:flex-row items-center justify-between pt-32 md:pt-24 px-6 md:px-16 overflow-hidden pb-12">
 
                 {/* Background Blobs (Optional for extra glassmorphism feel) */}
-                <div className="absolute top-20 right-20 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-                <div className="absolute top-40 left-20 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+                <div className="absolute top-20 right-20 w-64 md:w-96 h-64 md:h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+                <div className="absolute top-40 left-20 w-64 md:w-96 h-64 md:h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
 
                 {/* Left Content */}
-                <div className="w-[60%] z-10 flex flex-col items-start animate-fade-in-left">
-                    <h1 className="text-[5rem] leading-[1.1] mb-6 font-handwriting text-[#5D4037] drop-shadow-sm font-normal">
+                <div className="w-full md:w-[50%] lg:w-[45%] z-20 flex flex-col items-center md:items-start animate-fade-in-left text-center md:text-left mt-10 md:mt-0 md:pl-8">
+                    <h1 className="text-5xl md:text-[5rem] leading-[1.1] mb-4 md:mb-6 font-handwriting text-[#5D4037] drop-shadow-sm font-normal">
                         {slide.titleFirst} <br />
                         {slide.titleSecond}
                     </h1>
 
-                    <p className="text-xl font-bold max-w-xl mb-10 leading-relaxed text-black/80 tracking-wide font-sans">
+                    <p className="text-base md:text-xl font-bold max-w-xl mb-8 md:mb-10 leading-relaxed text-black/80 tracking-wide font-sans px-4 md:px-0">
                         {slide.desc}
                     </p>
 
                     {/* Flavor Circles (Navigation) */}
-                    <div className="flex gap-8 mb-4 items-end pl-4 h-32 relative">
-                        {/* Line indicating selection */}
-                        <div className="absolute bottom-[-10px] h-1 bg-white/50 w-full rounded-full"></div>
+                    <div className="flex gap-4 md:gap-8 mb-4 items-end md:pl-4 h-24 md:h-32 relative justify-center md:justify-start w-full md:w-auto">
+                        {/* Line indicating selection (hidden on mobile for cleaner look) */}
+                        <div className="hidden md:block absolute bottom-[-10px] h-1 bg-white/50 w-full rounded-full"></div>
                         <div
-                            className="absolute bottom-[-10px] h-1 bg-white w-20 transition-all duration-300 ease-in-out z-10"
+                            className="hidden md:block absolute bottom-[-10px] h-1 bg-white w-20 transition-all duration-300 ease-in-out z-10"
                             style={{ left: `${current * (80 + 32) + 16}px` }} // Approx calc for simplicity
                         ></div>
 
                         {slides.map((s, i) => (
                             <div
                                 key={i}
-                                className={`w-20 h-20 rounded-full border-4 p-1 bg-white shadow-lg cursor-pointer transition-all duration-300 hover:scale-110 z-20 ${current === i ? 'scale-125 border-white -translate-y-4' : 'border-white/50 grayscale-[50%]'}`}
+                                className={`w-14 h-14 md:w-20 md:h-20 rounded-full border-2 md:border-4 p-1 bg-white shadow-lg cursor-pointer transition-all duration-300 hover:scale-110 z-20 ${current === i ? 'scale-125 border-white -translate-y-2 md:-translate-y-4' : 'border-white/50 grayscale-[50%]'}`}
                                 onClick={() => setCurrent(i)}
                             >
                                 <img src={s.image || s.thumb} className="w-full h-full object-cover rounded-full" alt={s.titleFirst} />
@@ -165,14 +133,18 @@ function Home() {
                 </div>
 
                 {/* Right Side - Big Image */}
-                <div className="w-[45%] absolute right-0 top-0 h-full flex items-center justify-center pointer-events-none z-0">
+                <div className="w-full md:w-[50%] relative h-[40vh] md:h-[80vh] flex items-center justify-center pointer-events-none z-10 mt-12 md:mt-0">
                     {/* Pinkish abstract bg shape from design */}
-                    <svg className="absolute top-0 right-0 h-full w-full z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <svg className="hidden md:block absolute top-0 right-0 h-full w-full z-0 opacity-50" viewBox="0 0 100 100" preserveAspectRatio="none">
                         <path d="M50 0 C 80 20, 100 60, 100 100 L 100 0 Z" fill="rgba(255,255,255,0.3)" />
                     </svg>
 
-                    <div key={current} className={`relative z-10 animate-float-enter ${current === 0 ? 'w-[550px] right-[50px] top-[100px]' : current === 2 ? 'w-[600px] right-[0px] top-[80px]' : 'w-[800px] right-[-50px] top-[50px]'}`}>
-                        <img src={slide.mainImg} alt={slide.titleFirst} className="w-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] filter brightness-110 contrast-110" />
+                    <div key={current} className="relative z-10 animate-float-enter flex justify-center w-full">
+                        <img 
+                            src={slide.mainImg} 
+                            alt={slide.titleFirst} 
+                            className="w-[85%] md:w-[90%] max-w-[600px] xl:max-w-[700px] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] filter brightness-110 contrast-110 transition-transform duration-500 hover:scale-105" 
+                        />
                     </div>
                 </div>
             </div>
@@ -186,31 +158,31 @@ function Home() {
 
             {/* Red Banner & Marquee Section */}
             {/* The red card overlaps the hero a bit */}
-            <div className="relative z-20 -mt-24 px-10">
-                <div className="w-full max-w-6xl mx-auto rounded-[50px] bg-gradient-to-br from-[#A93226]/90 to-[#922B21]/80 backdrop-blur-xl shadow-[0_20px_50px_rgba(169,50,38,0.5)] relative overflow-hidden flex flex-col md:flex-row items-center p-2 border border-white/20 ring-1 ring-white/30">
+            <div className="relative z-20 -mt-8 md:-mt-16 px-4 md:px-10">
+                <div className="w-full max-w-6xl mx-auto rounded-3xl md:rounded-[50px] bg-gradient-to-br from-[#A93226]/90 to-[#922B21]/80 backdrop-blur-xl shadow-[0_20px_50px_rgba(169,50,38,0.5)] relative overflow-hidden flex flex-col md:flex-row items-center p-2 border border-white/20 ring-1 ring-white/30">
 
                     {/* Left Text */}
-                    <div className="flex-1 p-8 text-white">
-                        <h2 className="text-4xl font-bold leading-tight font-sans tracking-wide">
-                            Plunge into <br />
-                            our Ice <br />
-                            Cream <br />
+                    <div className="w-full md:flex-1 p-6 md:p-8 text-white text-center md:text-left">
+                        <h2 className="text-3xl md:text-4xl font-bold leading-tight font-sans tracking-wide">
+                            Plunge into <br className="hidden md:block" />
+                            our Ice <br className="hidden md:block" />
+                            Cream <br className="hidden md:block" />
                             ocean
                         </h2>
                     </div>
 
                     {/* Stats */}
-                    <div className="flex-1 flex justify-center items-center gap-16 p-6 text-white border-l border-white/10 border-r border-white/10">
+                    <div className="w-full md:flex-1 flex justify-center items-center gap-8 md:gap-16 p-6 text-white border-t border-b md:border-t-0 md:border-b-0 md:border-l md:border-r border-white/10">
                         <div className="text-center">
-                            <div className="text-6xl font-bold font-sans">25+</div>
-                            <div className="text-sm font-bold uppercase tracking-wider mt-2">Diverse <br /> Categories</div>
+                            <div className="text-5xl md:text-6xl font-bold font-sans">25+</div>
+                            <div className="text-xs md:text-sm font-bold uppercase tracking-wider mt-2">Diverse <br /> Categories</div>
                         </div>
                     </div>
 
-                    <div className="flex-1 flex justify-center items-center p-6 text-white">
+                    <div className="w-full md:flex-1 flex justify-center items-center p-6 text-white">
                         <div className="text-center">
-                            <div className="text-6xl font-bold font-sans">125 +</div>
-                            <div className="text-sm font-bold uppercase tracking-wider mt-2">Ice Creams</div>
+                            <div className="text-5xl md:text-6xl font-bold font-sans">125 +</div>
+                            <div className="text-xs md:text-sm font-bold uppercase tracking-wider mt-2">Ice Creams</div>
                         </div>
                     </div>
                 </div>
@@ -218,7 +190,7 @@ function Home() {
 
             {/* Marquee */}
             <div className="w-full bg-[#D98880] py-4 mt-8 overflow-hidden relative">
-                <div className="whitespace-nowrap animate-marquee flex gap-10 text-[#7B241C] font-bold text-xl uppercase tracking-widest font-cursive">
+                <div className="whitespace-nowrap animate-marquee flex gap-10 text-[#7B241C] font-bold text-lg md:text-xl uppercase tracking-widest font-cursive">
                     {[1, 2, 3, 4, 5, 6].map(i => (
                         <span key={i}>Ice Creams that are lip-smackingly delicious!</span>
                     ))}
@@ -226,22 +198,22 @@ function Home() {
             </div>
 
             {/* Features Row */}
-            <div className="w-full bg-blue-300/30 backdrop-blur-sm py-12 flex justify-center gap-16 items-center flex-wrap">
-                <div className="flex items-center gap-4">
-                    <div className="bg-[#A93226] p-3 rounded-full text-white text-2xl shadow-lg"><FaMedal /></div>
-                    <span className="font-bold text-[#5D4037] text-lg leading-tight">No Compromise <br /> on Quality!</span>
+            <div className="w-full bg-blue-300/30 backdrop-blur-sm py-8 md:py-12 flex justify-center gap-8 md:gap-16 items-center flex-wrap px-4">
+                <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4 text-center md:text-left">
+                    <div className="bg-[#A93226] p-3 rounded-full text-white text-xl md:text-2xl shadow-lg"><FaMedal /></div>
+                    <span className="font-bold text-[#5D4037] text-sm md:text-lg leading-tight">No Compromise <br className="hidden md:block"/> on Quality!</span>
                 </div>
-                <div className="flex items-center gap-4">
-                    <div className="bg-[#E67E22] p-3 rounded-full text-white text-2xl shadow-lg"><FaStar /></div>
-                    <span className="font-bold text-[#5D4037] text-lg leading-tight">Creative and <br /> Innovative</span>
+                <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4 text-center md:text-left">
+                    <div className="bg-[#E67E22] p-3 rounded-full text-white text-xl md:text-2xl shadow-lg"><FaStar /></div>
+                    <span className="font-bold text-[#5D4037] text-sm md:text-lg leading-tight">Creative and <br className="hidden md:block"/> Innovative</span>
                 </div>
-                <div className="flex items-center gap-4">
-                    <div className="bg-[#8D6E63] p-3 rounded-full text-white text-2xl shadow-lg"><FaLeaf /></div>
-                    <span className="font-bold text-[#5D4037] text-lg leading-tight">Naturally <br /> Pure</span>
+                <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4 text-center md:text-left">
+                    <div className="bg-[#8D6E63] p-3 rounded-full text-white text-xl md:text-2xl shadow-lg"><FaLeaf /></div>
+                    <span className="font-bold text-[#5D4037] text-sm md:text-lg leading-tight">Naturally <br className="hidden md:block"/> Pure</span>
                 </div>
-                <div className="flex items-center gap-4">
-                    <div className="bg-[#C0392B] p-3 rounded-full text-white text-2xl shadow-lg"><FaHeart /></div>
-                    <span className="font-bold text-[#5D4037] text-lg leading-tight">Made with <br /> Care</span>
+                <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4 text-center md:text-left">
+                    <div className="bg-[#C0392B] p-3 rounded-full text-white text-xl md:text-2xl shadow-lg"><FaHeart /></div>
+                    <span className="font-bold text-[#5D4037] text-sm md:text-lg leading-tight">Made with <br className="hidden md:block"/> Care</span>
                 </div>
             </div>
 
@@ -269,17 +241,17 @@ function Home() {
 
             {/* Footer */}
             <footer className="bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-xl py-8 mt-12 border-t border-white/60 shadow-lg relative z-10">
-                <div className="w-full max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center text-sm gap-4">
+                <div className="w-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center text-sm gap-8 md:gap-4">
 
                     {/* Brand / Copyright */}
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-1 w-full md:w-1/4">
                         <span className="text-red-800 font-bold text-lg tracking-wider">ibaco</span>
                         <p className="text-gray-600">© 2024 Hatsun Agro Product Ltd.</p>
-                        <p className="text-gray-500 text-xs text-justify max-w-xs">NO COMPROMISE. NATURALLY. CREATIVE AND REAL.</p>
+                        <p className="text-gray-500 text-xs text-justify md:max-w-xs">NO COMPROMISE. NATURALLY. CREATIVE AND REAL.</p>
                     </div>
 
                     {/* Links Column 1 */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 w-full md:w-auto">
                         <h3 className="text-gray-800 font-semibold mb-1">Explore</h3>
                         <Link to="/our-story"><p className="hover:text-[#922B21] cursor-pointer">Our Story</p></Link>
                         <Link to="/products"><p className="hover:text-[#922B21] cursor-pointer">Our Products</p></Link>
@@ -287,15 +259,14 @@ function Home() {
                     </div>
 
                     {/* Links Column 2 */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 w-full md:w-auto">
                         <h3 className="text-gray-800 font-semibold mb-1">Support</h3>
-                        <p className="hover:text-[#922B21] cursor-pointer">Order Online</p>
+
                         <Link to="/contact-us"><p className="hover:text-[#922B21] cursor-pointer">Contact Us</p></Link>
-                        <p className="hover:text-[#922B21] cursor-pointer">Nutritional Info</p>
                     </div>
 
                     {/* Socials */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 w-full md:w-auto">
                         <h3 className="text-gray-800 font-semibold mb-1">Follow Us</h3>
                         <div className="flex gap-3">
                             <span className="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-red-500 hover:bg-red-50 cursor-pointer shadow-sm text-xs"><FaInstagram /></span>

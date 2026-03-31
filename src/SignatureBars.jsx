@@ -8,10 +8,10 @@ import productsBg from './assets/ea23eba1-dac1-4a76-abed-fefa52559845.png';
 import logo from './assets/logo.png';
 
 // Signature Bar Images
-import barStrawberry from './assets/1s.png';
-import barCottonCandy from './assets/2s.png';
-import barChocolate from './assets/3s.png';
-import barBlackcurrant from './assets/4s.png';
+import barStrawberry from './assets/4s.png';
+import barCottonCandy from './assets/3s.png';
+import barChocolate from './assets/2s.png';
+import barBlackcurrant from './assets/1s.png';
 
 // Reusing Toppings, Sauces data from CoolingSips
 import sauceBlackCurrant from './assets/Sauses/blackcurrent.png';
@@ -135,7 +135,7 @@ const SignatureBars = () => {
     };
 
     return (
-        <div className="h-screen w-full relative overflow-hidden font-sans text-[#5c3d2e] selection:bg-[#ff80ab] selection:text-white flex flex-col">
+        <div className="min-h-screen lg:h-screen w-full relative overflow-x-hidden lg:overflow-hidden font-sans text-[#5c3d2e] selection:bg-[#ff80ab] selection:text-white flex flex-col">
 
             {/* Background Layer - From OurProducts */}
             <div className="fixed inset-0 z-[-1]">
@@ -160,7 +160,7 @@ const SignatureBars = () => {
             </nav>
 
             {/* Main Content - Flex Row */}
-            <main className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-12 px-4 lg:px-12 py-4 h-[calc(100vh-80px)]">
+            <main className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-12 px-4 lg:px-12 py-4 pb-24 lg:pb-4 lg:h-[calc(100vh-80px)]">
 
                 {/* Left Side: Preview */}
                 <div className="w-full lg:w-5/12 h-full flex flex-col items-center justify-center relative">
@@ -171,7 +171,7 @@ const SignatureBars = () => {
                         <span className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#e91e63] to-[#9c27b0]">₹{totalPrice.toFixed(0)}</span>
                     </div>
 
-                    <div className="relative w-full max-w-[400px] h-full max-h-[600px] rounded-[3rem] bg-white/10 backdrop-blur-2xl border border-white/30 shadow-[0_20px_60px_rgba(0,0,0,0.15)] flex flex-col items-center justify-center p-8 overflow-hidden group">
+                    <div className="relative w-full max-w-[400px] h-[400px] lg:h-full lg:max-h-[600px] rounded-[3rem] bg-white/10 backdrop-blur-2xl border border-white/30 shadow-[0_20px_60px_rgba(0,0,0,0.15)] flex flex-col items-center justify-center p-8 overflow-hidden group mt-12 lg:mt-0">
 
                         {/* Glow effect */}
                         <div className={`absolute inset-0 bg-gradient-to-t from-${currentFlavor.color ? currentFlavor.color.replace('bg-', '') : 'blue-200'}/40 to-transparent opacity-60 transition-colors duration-700`}></div>
@@ -242,7 +242,7 @@ const SignatureBars = () => {
                 </div>
 
                 {/* Right Side: Tabbed Customization Panel */}
-                <div className="w-full lg:w-7/12 h-full flex flex-col bg-white/30 backdrop-blur-xl rounded-[2.5rem] border border-white/50 shadow-[0_20px_60px_rgba(0,0,0,0.1)] overflow-hidden">
+                <div className="w-full lg:w-7/12 min-h-[500px] lg:h-full flex flex-col bg-white/30 backdrop-blur-xl rounded-[2.5rem] border border-white/50 shadow-[0_20px_60px_rgba(0,0,0,0.1)] overflow-hidden lg:overflow-hidden">
 
                     {/* Tabs Header */}
                     <div className="flex items-center p-2 bg-white/20 border-b border-white/20">

@@ -23,9 +23,8 @@ const Footer = () => {
                 </div>
 
                 <div className="space-y-4">
-                    <div className="font-sans font-medium text-sm hover:text-[#922B21] cursor-pointer transition-colors">Order Online</div>
+
                     <div className="font-sans font-medium text-sm hover:text-[#922B21] cursor-pointer transition-colors">Contact Us</div>
-                    <div className="font-sans font-medium text-sm hover:text-[#922B21] cursor-pointer transition-colors">Nutritional Info</div>
                 </div>
 
                 {/* Socials & Copyright (Spanning bottom) */}

@@ -52,22 +52,22 @@ const OurProducts = () => {
     // Data for pages
     const allProducts = [
         // Page 1
-        { id: 1, title: "Cotton Candy", desc: "Fluffy & sweet", image: cottonCandy },
-        { id: 2, title: "Coffee Caramel", desc: "Rich & Indulgent", image: coffeeCaramel },
-        { id: 3, title: "Peach & strawberry", desc: "Fruity & Refreshing", image: peachStrawberry },
+        { id: 5, title: "Bubblegum", desc: "Sweet & Fun", image: bubblegum },
+        { id: 10, title: "Dark Chocolate", desc: "Intense & Delightful", image: darkChocolate },
+        { id: 7, title: "Strawberry", desc: "Sweet & Fruity", image: strawberry },
         { id: 4, title: "Butter Scotch", desc: "Tropical & Creamy", image: butterScotch },
 
         // Page 2
-        { id: 5, title: "Bubblegum", desc: "Sweet & Fun", image: bubblegum },
-        { id: 6, title: "Bean Vanilla", desc: "Classic & Rich", image: beanVanilla },
-        { id: 7, title: "Strawberry", desc: "Sweet & Fruity", image: strawberry },
-        { id: 8, title: "Tiramisu", desc: "Coffee & Mascarpone", image: tiramisu },
+        { id: 11, title: "Almond Crunch", desc: "Nutty & Sweet", image: almondCrunch },
+        { id: 1, title: "Cotton Candy", desc: "Fluffy & sweet", image: cottonCandy },
+        { id: 2, title: "Coffee Caramel", desc: "Rich & Indulgent", image: coffeeCaramel },
+        { id: 9, title: "Oatmeal Chocochip", desc: "Sweet & Fun", image: oatmealChocochip },
 
         // Page 3
-        { id: 9, title: "Oatmeal Chocochip", desc: "Sweet & Fun", image: oatmealChocochip },
-        { id: 10, title: "Dark Chocolate", desc: "Intense & Delightful", image: darkChocolate },
-        { id: 11, title: "Almond Crunch", desc: "Nutty & Sweet", image: almondCrunch },
+        { id: 8, title: "Tiramisu", desc: "Coffee & Mascarpone", image: tiramisu },
+        { id: 3, title: "Peach & strawberry", desc: "Fruity & Refreshing", image: peachStrawberry },
         { id: 12, title: "Tender Coconut", desc: "Tropical & Creamy", image: tenderCoconut },
+        { id: 6, title: "Bean Vanilla", desc: "Classic & Rich", image: beanVanilla },
     ];
 
     const ITEMS_PER_PAGE = 4;
@@ -130,7 +130,7 @@ const OurProducts = () => {
                         </div>
                         <div className="flex flex-col gap-2 mt-2">
                             <h3 className="text-[#922B21] font-bold text-sm uppercase tracking-wider border-b border-white/30 pb-2 mb-1">Support</h3>
-                            <div className="text-gray-800 hover:text-[#D81B60] font-medium transition-colors px-3 py-2 hover:bg-white/40 rounded-xl cursor-pointer">Order Online</div>
+
                             <Link to="/contact-us" className="text-gray-800 hover:text-[#D81B60] font-medium transition-colors px-3 py-2 hover:bg-white/40 rounded-xl">Contact Us</Link>
                         </div>
                     </div>
@@ -233,17 +233,17 @@ const OurProducts = () => {
 
             {/* Full Footer from Home Page */}
             <footer className="bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-xl py-8 mt-12 border-t border-white/60 shadow-lg relative z-10">
-                <div className="w-full max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center text-sm gap-4">
+                <div className="w-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center text-sm gap-8 md:gap-4">
 
                     {/* Brand / Copyright */}
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-1 w-full md:w-1/4">
                         <span className="text-red-800 font-bold text-lg tracking-wider">ibaco</span>
                         <p className="text-gray-600">© 2024 Hatsun Agro Product Ltd.</p>
-                        <p className="text-gray-500 text-xs text-justify max-w-xs">NO COMPROMISE. NATURALLY. CREATIVE AND REAL.</p>
+                        <p className="text-gray-500 text-xs text-justify md:max-w-xs">NO COMPROMISE. NATURALLY. CREATIVE AND REAL.</p>
                     </div>
 
                     {/* Links Column 1 */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 w-full md:w-auto">
                         <h3 className="text-gray-800 font-semibold mb-1">Explore</h3>
                         <Link to="/our-story"><p className="hover:text-[#922B21] cursor-pointer">Our Story</p></Link>
                         <Link to="/products"><p className="hover:text-[#922B21] cursor-pointer">Our Products</p></Link>
@@ -251,15 +251,14 @@ const OurProducts = () => {
                     </div>
 
                     {/* Links Column 2 */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 w-full md:w-auto">
                         <h3 className="text-gray-800 font-semibold mb-1">Support</h3>
-                        <p className="hover:text-[#922B21] cursor-pointer">Order Online</p>
+
                         <Link to="/contact-us"><p className="hover:text-[#922B21] cursor-pointer">Contact Us</p></Link>
-                        <p className="hover:text-[#922B21] cursor-pointer">Nutritional Info</p>
                     </div>
 
                     {/* Socials */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 w-full md:w-auto">
                         <h3 className="text-gray-800 font-semibold mb-1">Follow Us</h3>
                         <div className="flex gap-3">
                             <span className="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-red-500 hover:bg-red-50 cursor-pointer shadow-sm text-xs"><FaInstagram /></span>

@@ -9,6 +9,12 @@ import { useCart } from './CartContext';
 import iceCreamBg from './assets/ice-cream-detail-bg.png';
 import cakeBg from './assets/cake-detail-bg.png';
 
+// Recommendation images
+import rec1 from './assets/Glassmorphism images Source/cotton candy.png';
+import rec2 from './assets/Glassmorphism images Source/pista_new.png';
+import rec3 from './assets/Glassmorphism images Source/cake 1.png';
+import rec4 from './assets/Glassmorphism images Source/butter_new.png';
+
 const ProductDetails = () => {
     const { state } = useLocation();
     const navigate = useNavigate();
@@ -54,7 +60,8 @@ const ProductDetails = () => {
 
     const handleAddToCart = () => {
         const finalPrice = getPrice();
-        addToCart(product, quantity, selectedSize, finalPrice);
+        // Ensure 'name' property is present for Cart compatibility
+        addToCart({ ...product, name: product.title }, quantity, selectedSize, finalPrice);
         navigate('/cart');
     };
 
@@ -91,18 +98,18 @@ const ProductDetails = () => {
                 <h1 className="md:hidden text-4xl font-serif font-bold text-[#2d3047] mb-8 text-center drop-shadow-md">{product.title}</h1>
 
                 {/* Glass Card */}
-                <div className="relative w-full max-w-6xl bg-white/20 backdrop-blur-xl border border-white/40 rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center overflow-visible">
+                <div className="relative w-full max-w-6xl bg-white/20 backdrop-blur-xl border border-white/40 rounded-3xl md:rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-6 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center overflow-visible">
 
                     {/* Inner Glow */}
                     <div className="absolute inset-0 rounded-[3rem] shadow-[inset_0_0_40px_rgba(255,255,255,0.5)] pointer-events-none"></div>
 
                     {/* Left: Image */}
-                    <div className="relative flex justify-center items-center h-full min-h-[300px]">
+                    <div className="relative flex justify-center items-center h-full min-h-[250px] md:min-h-[300px]">
                         <div className="absolute inset-0 bg-gradient-to-tr from-white/30 to-transparent rounded-full blur-3xl scale-75"></div>
                         <img
                             src={product.image}
                             alt={product.title}
-                            className="w-full max-w-sm md:max-w-md object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.25)] animate-float z-10 hover:scale-105 transition-transform duration-500"
+                            className="w-[80%] max-w-sm md:max-w-md mx-auto object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.25)] animate-float z-10 hover:scale-105 transition-transform duration-500"
                         />
                     </div>
 
@@ -154,13 +161,13 @@ const ProductDetails = () => {
                         </div>
 
                         {/* Price & Action */}
-                        <div className="flex items-center justify-between mt-8 p-4 bg-white/40 rounded-3xl border border-white/50 shadow-inner">
-                            <div className="text-4xl font-bold text-[#2d3047]">
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 md:mt-8 p-4 bg-white/40 rounded-3xl border border-white/50 shadow-inner">
+                            <div className="text-3xl md:text-4xl font-bold text-[#2d3047]">
                                 ₹{getPrice() * quantity}
                             </div>
                             <button
                                 onClick={handleAddToCart}
-                                className="bg-[#2d68c4] hover:bg-[#154db3] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-blue-500/40 transition-all flex items-center gap-3 transform hover:-translate-y-1"
+                                className="w-full sm:w-auto bg-[#2d68c4] hover:bg-[#154db3] text-white px-6 md:px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-blue-500/40 transition-all flex justify-center items-center gap-2 md:gap-3 transform hover:-translate-y-1"
                             >
                                 <FaShoppingCart /> Add to Cart
                             </button>
@@ -173,12 +180,17 @@ const ProductDetails = () => {
                 <div className="w-full max-w-6xl mt-20">
                     <h3 className="text-2xl font-serif font-bold text-[#4E342E] mb-8 px-4">You May Also Like</h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
-                        {[1, 2, 3, 4].map((i) => (
-                            <div key={i} onClick={() => window.scrollTo(0, 0)} className="bg-white/20 backdrop-blur-sm rounded-3xl p-6 border border-white/30 flex flex-col items-center hover:bg-white/30 transition-all duration-300 hover:scale-105 cursor-pointer shadow-sm hover:shadow-lg">
-                                <div className="w-28 h-28 mb-4 bg-gradient-to-tr from-white/40 to-transparent rounded-full flex items-center justify-center border border-white/20">
-                                    <span className="text-4xl">🍦</span>
+                        {[
+                            { id: 101, title: 'Cotton Candy', image: rec1, category: 'ice-cream' },
+                            { id: 102, title: 'Pistachio Delight', image: rec2, category: 'ice-cream' },
+                            { id: 103, title: 'Berry Special Cake', image: rec3, category: 'cake' },
+                            { id: 104, title: 'Butterscotch Bliss', image: rec4, category: 'ice-cream' }
+                        ].map((item) => (
+                            <div key={item.id} onClick={() => { window.scrollTo(0, 0); navigate(`/product/${item.id}`, { state: { product: item, category: item.category } }); }} className="bg-white/20 backdrop-blur-sm rounded-3xl p-6 border border-white/30 flex flex-col items-center hover:bg-white/30 transition-all duration-300 hover:scale-105 cursor-pointer shadow-sm hover:shadow-lg">
+                                <div className="w-28 h-28 mb-4 bg-gradient-to-tr from-white/40 to-transparent rounded-full flex items-center justify-center border border-white/20 p-2">
+                                    <img src={item.image} alt={item.title} className="w-full h-full object-contain filter drop-shadow-md" />
                                 </div>
-                                <h4 className="font-bold text-lg text-[#4E342E] text-center mb-1">Delight {i}</h4>
+                                <h4 className="font-bold text-lg text-[#4E342E] text-center mb-1">{item.title}</h4>
                                 <p className="text-xs font-bold text-[#2d68c4] uppercase tracking-wide">View Product</p>
                             </div>
                         ))}

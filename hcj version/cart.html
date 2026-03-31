@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Ibaco</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Outfit:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Razorpay SDK -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body class="min-h-screen w-full relative font-sans overflow-x-hidden text-[#5D4037]">
+
+    <!-- Navbar injected by main.js -->
+
+    <!-- Background Image -->
+    <div class="fixed inset-0 z-0">
+        <img src="assets/contact us bg.png" alt="Cart Background" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-900/10 to-pink-900/10 mix-blend-overlay"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 w-full min-h-screen pt-32 pb-20 px-4 md:px-10 flex flex-col items-center">
+
+        <h1 class="text-4xl md:text-5xl font-black text-[#5D4037] mb-10 tracking-tight drop-shadow-sm text-center">
+            Your <span class="text-[#880E4F]">Shopping Cart</span>
+        </h1>
+
+        <div id="empty-cart-msg"
+            class="glass w-full max-w-2xl p-12 flex flex-col items-center justify-center text-center bg-white/30 backdrop-blur-md rounded-[3rem] border border-white/50 shadow-xl animate-fade-in-up hidden">
+            <div class="text-6xl text-[#880E4F] mb-6 opacity-50">🛒</div>
+            <h2 class="text-2xl font-bold text-[#5D4037] mb-2">Your cart is empty</h2>
+            <p class="text-gray-700 mb-8">Looks like you haven't added any delicious treats yet.</p>
+            <a href="products.html"
+                class="px-8 py-3 bg-[#D81B60] hover:bg-[#C2185B] text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                Start Shopping
+            </a>
+        </div>
+
+        <div id="cart-content" class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-8 hidden">
+            <!-- Left Column: Cart Items -->
+            <div class="lg:col-span-2 flex flex-col gap-6 animate-fade-in-left" id="cart-items-container">
+                <!-- Items injected here -->
+            </div>
+
+            <!-- Right Column: Order Summary, Promo, Address -->
+            <div class="flex flex-col gap-6 animate-fade-in-right delay-100">
+
+                <!-- Promo Code -->
+                <div class="glass p-8 rounded-[2rem] bg-white/40 backdrop-blur-md border border-white/50 shadow-lg">
+                    <h3 class="text-xl font-bold text-[#5D4037] mb-4 flex items-center gap-2">
+                        <i class="fas fa-tags text-[#880E4F]"></i> Promo Code
+                    </h3>
+                    <div class="flex gap-2">
+                        <input type="text" id="promo-input" placeholder="Use 'SAVE10'"
+                            class="flex-1 px-4 py-2 rounded-xl border border-white/60 bg-white/50 focus:outline-none focus:ring-2 focus:ring-[#880E4F]/30 placeholder-gray-500 font-medium text-[#5D4037]">
+                        <button id="apply-promo"
+                            class="px-4 py-2 bg-[#880E4F] hover:bg-[#6A0DAD] text-white font-bold rounded-xl shadow-md transition-all">Apply</button>
+                    </div>
+                    <p id="promo-msg" class="text-sm mt-2 font-bold ml-1"></p>
+                </div>
+
+                <!-- Order Summary -->
+                <div
+                    class="glass p-8 rounded-[2rem] bg-white/50 backdrop-blur-xl border border-white/60 shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
+                    <h3 class="text-2xl font-bold text-[#5D4037] mb-6 border-b border-black/5 pb-4">Order Summary</h3>
+
+                    <div class="flex justify-between items-center mb-3 text-gray-700 font-medium">
+                        <span>Subtotal</span>
+                        <span id="subtotal">₹0.00</span>
+                    </div>
+
+                    <div id="discount-row"
+                        class="flex justify-between items-center mb-3 text-green-700 font-bold hidden">
+                        <span>Discount (10%)</span>
+                        <span id="discount-amount">-₹0.00</span>
+                    </div>
+
+                    <div
+                        class="flex justify-between items-center mb-8 text-[#5D4037] font-black text-2xl pt-4 border-t border-black/10">
+                        <span>Total</span>
+                        <span id="total">₹0.00</span>
+                    </div>
+
+                    <button id="pay-btn"
+                        class="w-full py-4 bg-gradient-to-r from-[#D81B60] to-[#880E4F] hover:from-[#C2185B] hover:to-[#6A1B9A] text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 transition-all text-lg tracking-wide uppercase flex items-center justify-center gap-2">
+                        Pay Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer
+        class="bg-gradient-to-br from-white/90 to-white/60 backdrop-blur-xl py-8 mt-12 border-t border-white/60 shadow-lg relative z-10 w-full">
+        <div class="w-full max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center text-sm gap-4">
+            <div class="flex flex-col gap-1">
+                <span class="text-red-800 font-bold text-lg tracking-wider">ibaco</span>
+                <p class="text-gray-600">© 2024 Hatsun Agro Product Ltd.</p>
+            </div>
+            <div class="flex gap-8">
+                <div class="flex flex-col gap-2">
+                    <a href="our-story.html"
+                        class="text-gray-700 hover:text-[#922B21] font-medium transition-colors">Our Story</a>
+                    <a href="products.html"
+                        class="text-gray-700 hover:text-[#922B21] font-medium transition-colors cursor-pointer">Our
+                        Products</a>
+                    <a href="store-locator.html"
+                        class="text-gray-700 hover:text-[#922B21] font-medium transition-colors cursor-pointer">Store
+                        Locator</a>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span class="text-gray-700 hover:text-[#922B21] font-medium transition-colors cursor-pointer">Order
+                        Online</span>
+                    <a href="contact-us.html"
+                        class="text-gray-700 hover:text-[#922B21] font-medium transition-colors cursor-pointer">Contact
+                        Us</a>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <span
+                    class="w-8 h-8 rounded-full border border-gray-400/50 flex items-center justify-center text-red-600 hover:bg-red-50 cursor-pointer shadow-sm transition-transform hover:scale-110"><i
+                        class="fab fa-instagram"></i></span>
+                <span
+                    class="w-8 h-8 rounded-full border border-gray-400/50 flex items-center justify-center text-blue-600 hover:bg-blue-50 cursor-pointer shadow-sm transition-transform hover:scale-110"><i
+                        class="fab fa-facebook-f"></i></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Logic -->
+    <script type="module" src="js/main.js"></script>
+    <script type="module">
+        import { getCartItems, removeFromCart, updateQuantity, getCartTotal } from './js/cart.js';
+        import { auth } from './js/firebase-config.js';
+
+        let discount = 0;
+        let finalTotal = 0;
+
+        function renderCart() {
+            const items = getCartItems();
+            const emptyMsg = document.getElementById('empty-cart-msg');
+            const content = document.getElementById('cart-content');
+            const container = document.getElementById('cart-items-container');
+
+            if (items.length === 0) {
+                emptyMsg.classList.remove('hidden');
+                content.classList.add('hidden');
+                return;
+            }
+
+            emptyMsg.classList.add('hidden');
+            content.classList.remove('hidden');
+            content.classList.add('grid'); // Ensure grid display
+
+            container.innerHTML = '';
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "glass p-6 rounded-[2rem] bg-white/40 backdrop-blur-md border border-white/50 shadow-md flex items-center gap-6 hover:bg-white/50 transition-colors group";
+                div.innerHTML = `
+                    <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-white shadow-sm flex-shrink-0 bg-white">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-[#5D4037]">${item.name}</h3>
+                        <p class="text-sm text-gray-600 font-medium">Size: ${item.size || 'Regular'}</p>
+                        <p class="text-lg font-bold text-[#880E4F] mt-1">₹${item.price}</p>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/50 rounded-full px-3 py-1 border border-white/60 shadow-inner">
+                        <button class="dec-btn w-8 h-8 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 text-[#5D4037] transition-colors" data-id="${item.uniqueId}">
+                            <i class="fas fa-minus text-xs"></i>
+                        </button>
+                        <span class="font-bold text-[#5D4037] w-4 text-center">${item.quantity}</span>
+                        <button class="inc-btn w-8 h-8 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 text-[#5D4037] transition-colors" data-id="${item.uniqueId}">
+                            <i class="fas fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                    <button class="del-btn w-10 h-10 flex items-center justify-center rounded-full bg-red-100 hover:bg-red-200 text-red-600 transition-colors shadow-sm ml-2" data-id="${item.uniqueId}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+
+            // Attach listeners
+            document.querySelectorAll('.dec-btn').forEach(btn => btn.onclick = () => { updateQuantity(parseInt(btn.dataset.id), 'dec'); renderCart(); });
+            document.querySelectorAll('.inc-btn').forEach(btn => btn.onclick = () => { updateQuantity(parseInt(btn.dataset.id), 'inc'); renderCart(); });
+            document.querySelectorAll('.del-btn').forEach(btn => btn.onclick = () => { removeFromCart(parseInt(btn.dataset.id)); renderCart(); });
+
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const subtotal = getCartTotal();
+            const discountAmt = subtotal * discount;
+            finalTotal = subtotal - discountAmt;
+
+            document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+            document.getElementById('discount-amount').textContent = `-₹${discountAmt.toFixed(2)}`;
+            document.getElementById('total').textContent = `₹${finalTotal.toFixed(2)}`;
+            document.getElementById('pay-btn').textContent = `Pay ₹${finalTotal.toFixed(2)}`;
+
+            if (discount > 0) {
+                document.getElementById('discount-row').classList.remove('hidden');
+            } else {
+                document.getElementById('discount-row').classList.add('hidden');
+            }
+        }
+
+        // Promo
+        document.getElementById('apply-promo').onclick = () => {
+            const code = document.getElementById('promo-input').value.trim().toUpperCase();
+            const msg = document.getElementById('promo-msg');
+            if (code === 'SAVE10') {
+                discount = 0.10;
+                msg.textContent = 'Promo code applied!';
+                msg.className = 'text-sm mt-2 font-bold ml-1 text-green-700';
+            } else {
+                discount = 0;
+                msg.textContent = 'Invalid Promo Code';
+                msg.className = 'text-sm mt-2 font-bold ml-1 text-red-600';
+            }
+            calculateTotal();
+        }
+
+        // Payment
+        document.getElementById('pay-btn').onclick = () => {
+            const user = auth.currentUser;
+            if (!user) {
+                alert("Please login to proceed with payment.");
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const options = {
+                key: "rzp_test_SFWlwVACNEuZif",
+                amount: Math.round(finalTotal * 100),
+                currency: "INR",
+                name: "Ibaco",
+                description: "Ice Cream Delight",
+                image: "assets/logo.png",
+                handler: function (response) {
+                    console.log(response.razorpay_payment_id);
+                    window.location.href = 'success.html';
+                },
+                prefill: {
+                    name: user.displayName || "Ice Cream Lover",
+                    email: user.email
+                },
+                theme: {
+                    color: "#D81B60"
+                }
+            };
+            const rzp1 = new Razorpay(options);
+            rzp1.open();
+        }
+
+        renderCart();
+    </script>
+</body>
+
+</html>

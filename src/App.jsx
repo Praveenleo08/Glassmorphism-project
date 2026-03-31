@@ -10,6 +10,8 @@ import OurProducts from './OurProducts';
 import StoreLocator from './StoreLocator';
 import ContactUs from './ContactUs';
 import ScrollToTop from './ScrollToTop';
+import UserAccount from './UserAccount';
+import Success from './Success'; // Import UserAccount
 
 import CelebrationCakes from './CelebrationCakes';
 import ProductDetails from './ProductDetails';
@@ -38,6 +40,8 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/store-locator" element={<StoreLocator />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/account" element={<UserAccount />} />
+          <Route path="/success" element={<Success />} />
         </Routes>
       </CartProvider>
     </Router>

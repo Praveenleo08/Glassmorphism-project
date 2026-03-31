@@ -137,8 +137,25 @@ const CoolingSips = () => {
 
     const currentFlavor = flavors.find(f => f.id === selectedFlavor);
 
+    const handleAddToCart = () => {
+        const compositeId = `sip-${currentFlavor.id}-${selectedToppings.sort().join('-')}-${selectedSauce}`;
+        const item = {
+            id: compositeId,
+            name: `${currentFlavor.name} Cooling Sip`,
+            image: currentFlavor.image,
+            toppings: selectedToppings.map(tId => toppings.find(t => t.id === tId)?.name).join(', '),
+            sauce: sauces.find(s => s.id === selectedSauce)?.name,
+            basePrice: basePrice,
+            customizationPrice: getToppingPrice(),
+            description: `Cooling Sip with ${currentFlavor.name}, ${selectedToppings.length > 0 ? selectedToppings.map(tId => toppings.find(t => t.id === tId)?.name).join(', ') : 'no toppings'} and ${sauces.find(s => s.id === selectedSauce)?.name || 'no sauce'}`
+        };
+
+        addToCart(item, 1, 'Regular', totalPrice);
+        navigate('/cart');
+    };
+
     return (
-        <div className="h-screen w-full relative overflow-hidden font-sans text-[#5c3d2e] selection:bg-[#ff80ab] selection:text-white flex flex-col">
+        <div className="min-h-screen lg:h-screen w-full relative overflow-x-hidden lg:overflow-hidden font-sans text-[#5c3d2e] selection:bg-[#ff80ab] selection:text-white flex flex-col">
 
             {/* Background Layer - More Vibrant */}
             <div className="fixed inset-0 z-[-1]">
@@ -162,8 +179,8 @@ const CoolingSips = () => {
                 </div>
             </nav>
 
-            {/* Main Content - Flex Row, No Page Scroll */}
-            <main className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-12 px-4 lg:px-12 py-4 h-[calc(100vh-80px)]">
+            {/* Main Content - Flex Row, No Page Scroll on Desktop */}
+            <main className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-12 px-4 lg:px-12 py-4 pb-24 lg:pb-4 lg:h-[calc(100vh-80px)]">
 
                 {/* Left Side: Preview (Dynamic & Centered) */}
                 <div className="w-full lg:w-5/12 h-full flex flex-col items-center justify-center relative">
@@ -174,7 +191,7 @@ const CoolingSips = () => {
                         <span className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#D81B60] to-[#FF4081]">₹{totalPrice.toFixed(0)}</span>
                     </div>
 
-                    <div className="relative w-full max-w-[400px] h-full max-h-[600px] rounded-[3rem] bg-white/10 backdrop-blur-2xl border border-white/30 shadow-[0_20px_60px_rgba(0,0,0,0.15)] flex flex-col items-center justify-center p-8 overflow-hidden group">
+                    <div className="relative w-full max-w-[400px] h-[400px] lg:h-full lg:max-h-[600px] rounded-[3rem] bg-white/10 backdrop-blur-2xl border border-white/30 shadow-[0_20px_60px_rgba(0,0,0,0.15)] flex flex-col items-center justify-center p-8 overflow-hidden group mt-12 lg:mt-0">
 
                         {/* Glow effect based on flavor */}
                         <div className={`absolute inset-0 bg-gradient-to-t from-${currentFlavor.color ? currentFlavor.color.replace('bg-', '') : 'pink-200'}/50 to-transparent opacity-60 transition-colors duration-700`}></div>
@@ -245,7 +262,7 @@ const CoolingSips = () => {
                 </div>
 
                 {/* Right Side: Tabbed Customization Panel */}
-                <div className="w-full lg:w-7/12 h-full flex flex-col bg-white/20 backdrop-blur-xl rounded-[2.5rem] border border-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.1)] overflow-hidden">
+                <div className="w-full lg:w-7/12 min-h-[500px] lg:h-full flex flex-col bg-white/20 backdrop-blur-xl rounded-[2.5rem] border border-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.1)] overflow-hidden lg:overflow-hidden">
 
                     {/* Tabs Header */}
                     <div className="flex items-center p-2 bg-white/20 border-b border-white/20">
@@ -368,7 +385,10 @@ const CoolingSips = () => {
                                     NEXT STEP <FaArrowRight size={12} />
                                 </button>
                             ) : (
-                                <button className="px-8 py-3 rounded-xl bg-gradient-to-r from-[#D81B60] to-[#FF4081] text-white font-bold shadow-[0_10px_20px_rgba(216,27,96,0.3)] hover:shadow-[0_15px_30px_rgba(216,27,96,0.4)] hover:-translate-y-1 transition-all flex items-center gap-2">
+                                <button
+                                    onClick={handleAddToCart}
+                                    className="px-8 py-3 rounded-xl bg-gradient-to-r from-[#D81B60] to-[#FF4081] text-white font-bold shadow-[0_10px_20px_rgba(216,27,96,0.3)] hover:shadow-[0_15px_30px_rgba(216,27,96,0.4)] hover:-translate-y-1 transition-all flex items-center gap-2"
+                                >
                                     ADD TO CART
                                 </button>
                             )}

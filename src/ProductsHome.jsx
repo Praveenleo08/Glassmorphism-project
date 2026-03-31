@@ -179,9 +179,9 @@ const ProductsHome = () => {
                     <div className="pt-20 pb-12 px-4 md:px-12 flex flex-col gap-12">
 
                         {/* Row 1: 3 Items - No Pagination */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-end">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-end justify-center">
                             {categoriesTop.map((cat, idx) => (
-                                <div key={cat.id} className={`flex flex-col items-center group relative z-10 ${cat.style}`} style={{ animationDelay: cat.delay }}>
+                                <div key={cat.id} className={`flex flex-col items-center group relative z-10 w-[85%] md:w-full mx-auto ${cat.style}`} style={{ animationDelay: cat.delay }}>
                                     {/* Card Body */}
                                     <div
                                         onClick={() => navigate(cat.link)}
@@ -216,9 +216,9 @@ const ProductsHome = () => {
                         </div>
 
                         {/* Row 2: 2 Items (Centered) */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 md:px-32 items-end">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 md:px-32 items-end justify-center">
                             {categoriesBottom.map((cat, idx) => (
-                                <div key={cat.id} className="flex flex-col items-center group relative z-10" style={{ animationDelay: cat.delay }}>
+                                <div key={cat.id} className="flex flex-col items-center group relative z-10 w-[85%] md:w-full mx-auto" style={{ animationDelay: cat.delay }}>
                                     {/* Card */}
                                     <div
                                         onClick={() => navigate(cat.link)}
@@ -253,17 +253,17 @@ const ProductsHome = () => {
 
             {/* Footer - Moved Outside Container for Full Width */}
             <footer className="bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-xl py-8 mt-12 border-t border-white/60 shadow-lg relative z-10 w-full">
-                <div className="w-full max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center text-sm gap-4">
+                <div className="w-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center text-sm gap-8 md:gap-4">
 
                     {/* Brand / Copyright */}
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-1 w-full md:w-1/4">
                         <span className="text-red-800 font-bold text-lg tracking-wider">ibaco</span>
                         <p className="text-gray-600">© 2024 Hatsun Agro Product Ltd.</p>
-                        <p className="text-gray-500 text-xs text-justify max-w-xs">NO COMPROMISE. NATURALLY. CREATIVE AND REAL.</p>
+                        <p className="text-gray-500 text-xs text-justify md:max-w-xs">NO COMPROMISE. NATURALLY. CREATIVE AND REAL.</p>
                     </div>
 
                     {/* Links Column 1 */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 w-full md:w-auto">
                         <h3 className="text-gray-800 font-semibold mb-1">Explore</h3>
                         <Link to="/our-story"><p className="hover:text-[#922B21] cursor-pointer text-[#922B21] font-bold">Our Story</p></Link>
                         <p className="hover:text-[#922B21] cursor-pointer">Our Products</p>
@@ -273,9 +273,8 @@ const ProductsHome = () => {
                     {/* Links Column 2 */}
                     <div className="flex flex-col gap-2">
                         <h3 className="text-gray-800 font-semibold mb-1">Support</h3>
-                        <p className="hover:text-[#922B21] cursor-pointer">Order Online</p>
+
                         <Link to="/contact-us"><p className="hover:text-[#922B21] cursor-pointer">Contact Us</p></Link>
-                        <p className="hover:text-[#922B21] cursor-pointer">Nutritional Info</p>
                     </div>
 
                     {/* Socials */}

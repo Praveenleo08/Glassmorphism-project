@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaFax, FaBars, FaInstagram, FaHome } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaFax, FaInstagram } from 'react-icons/fa';
+import Navbar from './Navbar';
 import contactBg from './assets/contact us bg.png';
 import logo from './assets/logo.png';
 
@@ -23,48 +24,7 @@ const ContactUs = () => {
             </div>
 
             {/* Navbar - Consistent with other pages */}
-            <nav className="flex items-center justify-between px-10 py-6 absolute top-0 w-full z-50">
-                <Link to="/">
-                    <img src={logo} alt="ibaco" className="h-40 object-contain hover:scale-110 transition-transform duration-300 drop-shadow-md" />
-                </Link>
-
-                <div className="flex items-center gap-4 relative">
-                    <Link to="/login">
-                        <button className="px-8 py-1.5 rounded-lg border border-black/20 bg-transparent text-sm font-bold text-black/80 hover:bg-white/20 transition-all uppercase shadow-lg backdrop-blur-sm">
-                            login
-                        </button>
-                    </Link>
-                    <button className="px-6 py-1.5 rounded-lg border border-black/20 bg-transparent text-sm font-bold text-black/80 hover:bg-white/20 transition-all uppercase shadow-lg backdrop-blur-sm">
-                        Our Products
-                    </button>
-                    <Link to="/">
-                        <button className="w-10 h-10 flex items-center justify-center rounded-lg border border-black/20 bg-transparent hover:bg-white/20 transition-all text-black/80 text-xl shadow-lg backdrop-blur-sm">
-                            <FaHome />
-                        </button>
-                    </Link>
-                    <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="w-10 h-10 flex items-center justify-center rounded-lg border border-black/20 bg-transparent hover:bg-white/20 transition-all text-black/80 text-xl z-50 relative shadow-lg backdrop-blur-sm"
-                    >
-                        <FaBars />
-                    </button>
-
-                    {/* Mobile Menu Dropdown */}
-                    <div className={`absolute top-16 right-0 w-72 bg-white/80 backdrop-blur-3xl border border-white/60 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-6 flex flex-col gap-4 transition-all duration-300 origin-top-right transform ${isMenuOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 -translate-y-4 pointer-events-none'} z-40`}>
-                        <div className="flex flex-col gap-2">
-                            <h3 className="text-[#922B21] font-bold text-sm uppercase tracking-wider border-b border-gray-200/50 pb-2 mb-1">Explore</h3>
-                            <Link to="/our-story" className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg">Our Story</Link>
-                            <span className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg cursor-pointer">Our Products</span>
-                            <Link to="/store-locator" className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg">Store Locator</Link>
-                        </div>
-                        <div className="flex flex-col gap-2 mt-2">
-                            <h3 className="text-[#922B21] font-bold text-sm uppercase tracking-wider border-b border-gray-200/50 pb-2 mb-1">Support</h3>
-                            <span className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg cursor-pointer">Order Online</span>
-                            <span className="text-gray-700 hover:text-[#D81B60] font-medium transition-colors px-2 py-1 hover:bg-white/40 rounded-lg cursor-pointer text-[#D81B60] font-bold">Contact Us</span>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            <Navbar />
 
             {/* Main Content Container */}
             <div className="relative z-10 w-full max-w-7xl h-auto min-h-[85vh] flex flex-col items-center justify-center p-4 pt-32 pb-20 mx-auto">
@@ -178,25 +138,25 @@ const ContactUs = () => {
 
             {/* Footer */}
             <footer className="bg-gradient-to-br from-white/90 to-white/60 backdrop-blur-xl py-8 mt-12 border-t border-white/60 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] relative z-10 w-full">
-                <div className="w-full max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center text-sm gap-4">
-                    <div className="flex flex-col gap-1">
+                <div className="w-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center text-sm gap-8 md:gap-4">
+                    <div className="flex flex-col gap-1 w-full md:w-auto">
                         <span className="text-red-800 font-bold text-lg tracking-wider">ibaco</span>
                         <p className="text-gray-600">© 2024 Hatsun Agro Product Ltd.</p>
                     </div>
 
-                    <div className="flex gap-8">
+                    <div className="flex flex-col md:flex-row gap-4 md:gap-8 w-full md:w-auto">
                         <div className="flex flex-col gap-2">
                             <Link to="/our-story" className="text-gray-700 hover:text-[#922B21] font-medium transition-colors">Our Story</Link>
                             <span className="text-gray-700 hover:text-[#922B21] font-medium transition-colors cursor-pointer">Our Products</span>
                             <Link to="/store-locator" className="text-gray-700 hover:text-[#922B21] font-medium transition-colors cursor-pointer">Store Locator</Link>
                         </div>
                         <div className="flex flex-col gap-2">
-                            <span className="text-gray-700 hover:text-[#922B21] font-medium transition-colors cursor-pointer">Order Online</span>
+
                             <span className="text-[#D81B60] font-bold cursor-default">Contact Us</span>
                         </div>
                     </div>
 
-                    <div className="flex gap-3">
+                    <div className="flex gap-3 w-full md:w-auto mt-4 md:mt-0">
                         <span className="w-8 h-8 rounded-full border border-gray-400/50 flex items-center justify-center text-red-600 hover:bg-red-50 cursor-pointer shadow-sm transition-transform hover:scale-110"><FaInstagram /></span>
                         <span className="w-8 h-8 rounded-full border border-gray-400/50 flex items-center justify-center text-blue-600 hover:bg-blue-50 cursor-pointer shadow-sm transition-transform hover:scale-110">f</span>
                     </div>

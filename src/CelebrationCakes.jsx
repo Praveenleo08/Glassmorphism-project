@@ -54,21 +54,21 @@ const CelebrationCakes = () => {
     const allCakes = [
         // Page 1
         { id: 1, title: "Black Forest Cake", desc: "Classic & Rich", image: blackforest },
-        { id: 2, title: "Butterscotch Almond Amore", desc: "Nutty & Sweet", image: butterscotch },
-        { id: 3, title: "Chocolate Overload", desc: "Decadent Chocolate", image: chocolateOverload },
+        { id: 7, title: "Mango Italian Fiesta", desc: "Tropical Delight", image: mangoItalian },
+        { id: 11, title: "Blackcurrant", desc: "Tangy & Sweet", image: blackcurrant },
         { id: 4, title: "Cotton Candy Cake", desc: "Fun & Fluffy", image: cottonCandy },
 
         // Page 2
-        { id: 5, title: "Dessert Royale", desc: "Premium Indulgence", image: dessertRoyale },
-        { id: 6, title: "Fruit & Blackcurrant Drizzle", desc: "Fruity Freshness", image: fruitBlackcurrant },
-        { id: 7, title: "Mango Italian Fiesta", desc: "Tropical Delight", image: mangoItalian },
+        { id: 9, title: "Pistachio Almond Ecstasy", desc: "Nutty Perfection", image: pistachio },
+        { id: 3, title: "Chocolate Overload", desc: "Decadent Chocolate", image: chocolateOverload },
+        { id: 12, title: "Blackcurrant Rich Cream", desc: "Creamy Berry", image: blackcurrantRich },
         { id: 8, title: "Mango Kingdom Gala", desc: "King of Fruits", image: mangoKingdom },
 
         // Page 3
-        { id: 9, title: "Pistachio Almond Ecstasy", desc: "Nutty Perfection", image: pistachio },
+        { id: 5, title: "Dessert Royale", desc: "Premium Indulgence", image: dessertRoyale },
+        { id: 2, title: "Butterscotch Almond Amore", desc: "Nutty & Sweet", image: butterscotch },
+        { id: 6, title: "Fruit & Blackcurrant Drizzle", desc: "Fruity Freshness", image: fruitBlackcurrant },
         { id: 10, title: "Swiss Choco Symphony", desc: "Smooth Chocolate", image: swissChoco },
-        { id: 11, title: "Blackcurrant", desc: "Tangy & Sweet", image: blackcurrant },
-        { id: 12, title: "Blackcurrant Rich Cream", desc: "Creamy Berry", image: blackcurrantRich },
     ];
 
     const ITEMS_PER_PAGE = 4;
@@ -235,7 +235,7 @@ const CelebrationCakes = () => {
 
             {/* Footer */}
             <footer className="w-full bg-[#f2f0ee] pt-12 pb-8 border-t border-[#d7ccc8]/50">
-                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-[#5D4037]">
+                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 text-[#5D4037]">
 
                     {/* Brand */}
                     <div className="flex flex-col gap-4">
@@ -253,9 +253,8 @@ const CelebrationCakes = () => {
                     </div>
 
                     <div className="space-y-4">
-                        <div className="font-sans font-medium text-sm hover:text-[#922B21] cursor-pointer transition-colors">Order Online</div>
+
                         <div className="font-sans font-medium text-sm hover:text-[#922B21] cursor-pointer transition-colors">Contact Us</div>
-                        <div className="font-sans font-medium text-sm hover:text-[#922B21] cursor-pointer transition-colors">Nutritional Info</div>
                     </div>
 
                     {/* Socials & Copyright */}
